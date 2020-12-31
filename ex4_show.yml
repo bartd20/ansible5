@@ -1,0 +1,11 @@
+---
+- gather_facts: off
+  hosts: nxos1:nxos2
+  tasks:
+    - nxos_command:
+        commands: show ip bgp summary
+      register: out
+   
+    - debug:
+        var: out
+ 

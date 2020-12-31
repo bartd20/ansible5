@@ -1,0 +1,30 @@
+---
+- gather_facts: on
+  hosts: cisco:arista:nxos:juniper
+  tasks:
+
+    - name: ios_config
+      cli_config:
+        config: "{{ lookup('template', 'ios.j2') }}"
+      when: ansible_facts.net_system == "ios"
+      tags: ios
+
+    - name: nxos_config
+      cli_config:
+        config: "{{ lookup('template', 'nxos.j2') }}"
+      when: ansible_facts.net_system == "nxos"
+      tags: nxos
+
+    - name: eos_config
+      cli_config:
+        config: "{{ lookup('template', 'eos.j2') }}"
+      when: ansible_facts.net_system == "eos"
+      tags: eos
+
+    - name: junos_config
+      cli_config:
+        config: "{{ lookup('template', 'junos.j2') }}"
+      when: ansible_facts.net_system == "junos"
+      tags: junos
+
+    

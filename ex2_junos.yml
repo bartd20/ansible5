@@ -1,0 +1,14 @@
+---
+- gather_facts: off
+  hosts: juniper
+  vars:
+    ansible_connection: network_cli
+
+  tasks:
+
+    - name: junos_config
+      cli_config:
+        config: "{{ lookup('template', 'junos.j2') }}"
+      tags: junos
+
+    

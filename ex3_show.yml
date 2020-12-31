@@ -1,0 +1,12 @@
+---
+- name: show ip access-list
+  hosts: cisco5:cisco6
+  gather_facts: off
+  tasks:
+    - ios_command:
+        commands: show ip access-list TEST-ANSIBLE11
+      register: out
+
+    - debug:
+        var: out
+

@@ -1,0 +1,9 @@
+---
+- name: nxos bgp
+  gather_facts: off
+  hosts: nxos1:nxos2
+  tasks:
+
+    - nxos_config:
+        src: "{{ inventory_hostname }}_full.txt"
+         

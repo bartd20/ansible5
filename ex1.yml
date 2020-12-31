@@ -1,0 +1,34 @@
+---
+- gather_facts: on
+  hosts: cisco:arista:nxos:juniper
+  tasks:
+
+    - name: ios_config
+      ios_config:
+        src: ios.j2
+        diff_against: running
+      when: ansible_facts.net_system == "ios"
+      tags: ios
+
+    - name: nxos_config
+      nxos_config:
+        src: nxos.j2
+        diff_against: running
+      when: ansible_facts.net_system == "nxos"
+      tags: nxos
+
+    - name: eos_config
+      eos_config:
+        src: eos.j2
+        diff_against: running
+      when: ansible_facts.net_system == "eos"
+      tags: eos
+
+    - name: junos_config
+      junos_config:
+        src: junos.j2
+#        diff_against: running
+      when: ansible_facts.net_system == "junos"
+      tags: junos
+
+    
